@@ -1,5 +1,5 @@
 CC       = gcc
-CFLAGS	 = -Wall -g -Wl,-Bstatic
+CFLAGS	 = -Wall -g
 
 TARGET := SnoopyGateway
 
@@ -30,9 +30,10 @@ LIBVAR	+= -lwiringPi \
            -lrt  \
 		   -lm \
 		   -lcrypt \
-		   -luv \
-		   -llog4c \
-		   -lcjson
+		   ${DEPS_LIB_DIR}/libuv_a.a \
+		   ${DEPS_LIB_DIR}/liblog4c.a \
+		   ${DEPS_LIB_DIR}/libcjson.a \
+		   -ldl
 
 LIBPATH =  -L ${DEPS_LIB_DIR}
 

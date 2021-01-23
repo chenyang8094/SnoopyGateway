@@ -2,6 +2,11 @@
 
 TOPDIR=$(cd "$(dirname "$0")";pwd)
 
+if [ $# != 1 ];then
+  echo "USAGE: $0 build/clean"
+  exit 1;
+fi
+
 PREFIX=$TOPDIR/lib
 
 LIBUVDIR=${TOPDIR}/libuv 
@@ -25,14 +30,6 @@ fi
 set_marker() {
   touch $BUILT_MARKER_FILE
 }
-
-if check_if_need_rebuild ; then
-  echo "There is no need to rebuild third party libs, if you really need to rebuild .."
-  echo "Plz manually remove file: $BUILT_MARKER_FILE"
-  exit 0
-else
-  echo "need to rebuild third party libs"
-fi
 
 build_libuv() {
     cd ${LIBUVDIR}
@@ -75,9 +72,25 @@ build_log4c() {
     cd ${TOPDIR}
 }
 
+if [ $1 = "build" ];then 
+  if check_if_need_rebuild ; then
+    echo "There is no need to rebuild third party libs, if you really need to rebuild .."
+    echo "Plz manually remove file: $BUILT_MARKER_FILE"
+    exit 0
+  else
+    echo "need to rebuild third party libs"
+  fi
+  build_libuv
+  build_cjson
+  build_log4c
 
-build_libuv
-build_cjson
-build_log4c
+  set_marker
+fi
 
-set_marker
+if [ $1 = "clean" ];then
+  rm -rf $PREFIX
+  rm -rf $BUILT_MARKER_FILE
+  rm -rf ${CJSONDIR}/build
+  rm -rf ${LIBUVDIR}/build
+  rm -rf ${LOG4CDIR}/build
+fi
