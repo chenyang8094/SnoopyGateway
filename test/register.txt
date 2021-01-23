@@ -1,0 +1,505 @@
+
+POST http://192.168.4.3:18081/add HTTP/1.1
+content-type: application/json
+
+[
+{
+  "date_code": "20191218",
+  "definition": {
+    "description": "Hue White and color ambiance Play Lightbar",
+    "exposes": [
+      {
+        "features": [
+          {
+            "access": 7,
+            "description": "On/off state of this light",
+            "name": "state",
+            "property": "state",
+            "type": "binary",
+            "value_off": "OFF",
+            "value_on": "ON",
+            "value_toggle": "TOGGLE"
+          },
+          {
+            "access": 7,
+            "description": "Brightness of this light",
+            "name": "brightness",
+            "property": "brightness",
+            "type": "numeric",
+            "value_max": 254,
+            "value_min": 0
+          },
+          {
+            "access": 7,
+            "description": "Color temperature of this light",
+            "name": "color_temp",
+            "property": "color_temp",
+            "type": "numeric",
+            "unit": "mired",
+            "value_max": 500,
+            "value_min": 150
+          },
+          {
+            "description": "Color of this light in the CIE 1931 color space (x/y)",
+            "features": [
+              {
+                "access": 7,
+                "name": "x",
+                "property": "x",
+                "type": "numeric"
+              },
+              {
+                "access": 7,
+                "name": "y",
+                "property": "y",
+                "type": "numeric"
+              }
+            ],
+            "name": "color_xy",
+            "property": "color",
+            "type": "composite"
+          }
+        ],
+        "type": "light"
+      },
+      {
+        "access": 2,
+        "description": "Triggers an effect on the light (e.g. make light blink for a few seconds)",
+        "name": "effect",
+        "property": "effect",
+        "type": "enum",
+        "values": [
+          "blink",
+          "breathe",
+          "okay",
+          "channel_change",
+          "finish_effect",
+          "stop_effect"
+        ]
+      },
+      {
+        "access": 1,
+        "description": "Link quality (signal strength)",
+        "name": "linkquality",
+        "property": "linkquality",
+        "type": "numeric",
+        "unit": "lqi",
+        "value_max": 255,
+        "value_min": 0
+      }
+    ],
+    "model": "915005733701",
+    "vendor": "Philips"
+  },
+  "endpoints": {
+    "11": {
+      "bindings": [
+        {
+          "cluster": "genOnOff",
+          "target": {
+            "endpoint": 1,
+            "sid": "0x00124b001caa69fb",
+            "type": "endpoint"
+          }
+        }
+      ],
+      "clusters": {
+        "input": [
+          "genBasic",
+          "genIdentify",
+          "genGroups",
+          "genScenes",
+          "genOnOff",
+          "genLevelCtrl",
+          "touchlink",
+          "lightingColorCtrl",
+          "manuSpecificLegrandDevices"
+        ],
+        "output": [
+          "genOta"
+        ]
+      }
+    },
+    "242": {
+      "bindings": [],
+      "clusters": {
+        "input": [
+          "greenPower"
+        ],
+        "output": [
+          "greenPower"
+        ]
+      }
+    }
+  },
+  "friendly_name": "light_officedesk_right",
+  "sid": "0x0017880106117ff9",
+  "interview_completed": true,
+  "interviewing": false,
+  "network_address": 46616,
+  "power_source": "Mains (single phase)",
+  "software_build_id": "1.50.2_r30933",
+  "supported": true,
+  "type": "Router"
+},
+{
+      "date_code": "20191026",
+      "definition": {
+        "description": "TRADFRI control outlet",
+        "exposes": [
+          {
+            "features": [
+              {
+                "access": 7,
+                "description": "On/off state of the switch",
+                "name": "state",
+                "property": "state",
+                "type": "binary",
+                "value_off": "OFF",
+                "value_on": "ON",
+                "value_toggle": "TOGGLE"
+              }
+            ],
+            "type": "switch"
+          },
+          {
+            "access": 1,
+            "description": "Link quality (signal strength)",
+            "name": "linkquality",
+            "property": "linkquality",
+            "type": "numeric",
+            "unit": "lqi",
+            "value_max": 255,
+            "value_min": 0
+          }
+        ],
+        "model": "E1603/E1702",
+        "vendor": "IKEA"
+      },
+      "endpoints": {
+        "1": {
+          "bindings": [
+            {
+              "cluster": "genOnOff",
+              "target": {
+                "endpoint": 1,
+                "sid": "0x00124b001caa69fb",
+                "type": "endpoint"
+              }
+            },
+            {
+              "cluster": "genLevelCtrl",
+              "target": {
+                "endpoint": 1,
+                "sid": "0x00124b001caa69fb",
+                "type": "endpoint"
+              }
+            }
+          ],
+          "clusters": {
+            "input": [
+              "genBasic",
+              "genIdentify",
+              "genGroups",
+              "genScenes",
+              "genOnOff",
+              "genLevelCtrl",
+              "touchlink"
+            ],
+            "output": [
+              "genScenes",
+              "genOta",
+              "genPollCtrl",
+              "touchlink"
+            ]
+          }
+        },
+        "242": {
+          "bindings": [],
+          "clusters": {
+            "input": [
+              "greenPower"
+            ],
+            "output": [
+              "greenPower"
+            ]
+          }
+        }
+      },
+      "friendly_name": "light_livingroom_sjopenna",
+      "sid": "0x000d6ffffeb82582",
+      "interview_completed": true,
+      "interviewing": false,
+      "network_address": 16527,
+      "power_source": "Mains (single phase)",
+      "software_build_id": "2.0.024",
+      "supported": true,
+      "type": "Router"
+    },
+    {
+        "date_code": "20190311",
+        "definition": {
+           "description": "TRADFRI open/close remote",
+           "exposes": [
+              {
+                 "access": 1,
+                 "description": "Remaining battery in %",
+                 "name": "battery",
+                 "property": "battery",
+                 "type": "numeric",
+                 "unit": "%",
+                 "value_max": 100,
+                 "value_min": 0
+              },
+              {
+                 "access": 1,
+                 "description": "Triggered action (e.g. a button click)",
+                 "name": "action",
+                 "property": "action",
+                 "type": "enum",
+                 "values": [
+                    "close",
+                    "open",
+                    "stop"
+                 ]
+              },
+              {
+                 "access": 1,
+                 "description": "Link quality (signal strength)",
+                 "name": "linkquality",
+                 "property": "linkquality",
+                 "type": "numeric",
+                 "unit": "lqi",
+                 "value_max": 255,
+                 "value_min": 0
+              }
+           ],
+           "model": "E1766",
+           "vendor": "IKEA"
+        },
+        "endpoints": {
+           "1": {
+              "bindings": [
+                 {
+                    "cluster": "genPowerCfg",
+                    "target": {
+                       "endpoint": 1,
+                       "sid": "0x00124b001caa69fb",
+                       "type": "endpoint"
+                    }
+                 }
+              ],
+              "clusters": {
+                 "input": [
+                    "genBasic",
+                    "genPowerCfg",
+                    "genIdentify",
+                    "genAlarms",
+                    "genPollCtrl",
+                    "touchlink"
+                 ],
+                 "output": [
+                    "genIdentify",
+                    "genGroups",
+                    "genOnOff",
+                    "genLevelCtrl",
+                    "genOta",
+                    "closuresWindowCovering",
+                    "touchlink"
+                 ]
+              },
+              "configured_reportings": []
+           }
+        },
+        "friendly_name": "remote_livingroom_curtains",
+        "sid": "0x086bd7fffe2037f0",
+        "interview_completed": true,
+        "interviewing": false,
+        "model_id": "TRADFRI open/close remote",
+        "network_address": 38517,
+        "power_source": "Battery",
+        "software_build_id": "2.2.010",
+        "supported": true,
+        "type": "EndDevice"
+     },
+     {
+      "date_code": "20161129",
+      "definition": {
+         "description": "Aqara temperature, humidity and pressure sensor",
+         "exposes": [
+            {
+               "access": 1,
+               "description": "Remaining battery in %",
+               "name": "battery",
+               "property": "battery",
+               "type": "numeric",
+               "unit": "%",
+               "value_max": 100,
+               "value_min": 0
+            },
+            {
+               "access": 1,
+               "description": "Measured temperature value",
+               "name": "temperature",
+               "property": "temperature",
+               "type": "numeric",
+               "unit": "°C"
+            },
+            {
+               "access": 1,
+               "description": "Measured relative humidity",
+               "name": "humidity",
+               "property": "humidity",
+               "type": "numeric",
+               "unit": "%"
+            },
+            {
+               "access": 1,
+               "description": "The measured atmospheric pressure",
+               "name": "pressure",
+               "property": "pressure",
+               "type": "numeric",
+               "unit": "hPa"
+            },
+            {
+               "access": 1,
+               "description": "Link quality (signal strength)",
+               "name": "linkquality",
+               "property": "linkquality",
+               "type": "numeric",
+               "unit": "lqi",
+               "value_max": 255,
+               "value_min": 0
+            }
+         ],
+         "model": "WSDCGQ11LM",
+         "vendor": "Xiaomi"
+      },
+      "endpoints": {
+         "1": {
+            "bindings": [],
+            "clusters": {
+               "input": [
+                  "genBasic",
+                  "genIdentify",
+                  "msTemperatureMeasurement",
+                  "msPressureMeasurement",
+                  "msRelativeHumidity"
+               ],
+               "output": [
+                  "genBasic",
+                  "genGroups"
+               ]
+            }
+         }
+      },
+      "friendly_name": "rht_server",
+      "sid": "0x00158d000414385c",
+      "interview_completed": true,
+      "interviewing": false,
+      "network_address": 30075,
+      "power_source": "Battery",
+      "software_build_id": "3000-0001",
+      "supported": true,
+      "type": "EndDevice"
+   },
+   {
+      "date_code": "20190311",
+      "definition": {
+        "description": "KADRILJ roller blind",
+        "exposes": [
+          {
+            "features": [
+              {
+                "access": 7,
+                "name": "state",
+                "property": "state",
+                "type": "binary",
+                "value_off": "CLOSE",
+                "value_on": "OPEN"
+              },
+              {
+                "access": 7,
+                "description": "Position of this cover",
+                "name": "position",
+                "property": "position",
+                "type": "numeric",
+                "value_max": 100,
+                "value_min": 0
+              }
+            ],
+            "type": "cover"
+          },
+          {
+            "access": 1,
+            "description": "Remaining battery in %",
+            "name": "battery",
+            "property": "battery",
+            "type": "numeric",
+            "unit": "%",
+            "value_max": 100,
+            "value_min": 0
+          },
+          {
+            "access": 1,
+            "description": "Link quality (signal strength)",
+            "name": "linkquality",
+            "property": "linkquality",
+            "type": "numeric",
+            "unit": "lqi",
+            "value_max": 255,
+            "value_min": 0
+          }
+        ],
+        "model": "E1926",
+        "vendor": "IKEA"
+      },
+      "endpoints": {
+        "1": {
+          "bindings": [
+            {
+              "cluster": "genPowerCfg",
+              "target": {
+                "endpoint": 1,
+                "sid": "0x00124b001caa69fb",
+                "type": "endpoint"
+              }
+            },
+            {
+              "cluster": "closuresWindowCovering",
+              "target": {
+                "endpoint": 1,
+                "sid": "0x00124b001caa69fb",
+                "type": "endpoint"
+              }
+            }
+          ],
+          "clusters": {
+            "input": [
+              "genBasic",
+              "genPowerCfg",
+              "genIdentify",
+              "genGroups",
+              "genScenes",
+              "genPollCtrl",
+              "closuresWindowCovering",
+              "touchlink"
+            ],
+            "output": [
+              "genOta",
+              "touchlink"
+            ]
+          }
+        }
+      },
+      "friendly_name": "blinds_livingroom_side",
+      "sid": "0x000d6ffffea9430d",
+      "interview_completed": true,
+      "interviewing": false,
+      "network_address": 13941,
+      "power_source": "Battery",
+      "software_build_id": "2.2.009",
+      "supported": true,
+      "type": "EndDevice"
+    }
+]

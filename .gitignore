@@ -1,0 +1,12 @@
+output/*
+*.o
+*.a
+*.so
+deps/libuv/build/
+deps/log4c/build/
+deps/cJSON/build/
+SnoopyGateway
+nohup.out
+deps/lib
+deps/.thirdparty_libs_built
+.vscode/settings.json
