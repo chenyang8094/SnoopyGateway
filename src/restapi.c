@@ -39,6 +39,7 @@ int restapi_init() {
     printf("pthread_create http_server_listen failed: %d\n", res);
     return -1;
   }
+  return 0;
 }
 
 int restapi_exit() {
