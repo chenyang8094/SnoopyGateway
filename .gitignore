@@ -3,7 +3,7 @@ output/*
 *.a
 *.so
 deps/libuv/build/
-deps/log4c/build/
+deps/zlog/build/
 deps/cJSON/build/
 SnoopyGateway
 nohup.out

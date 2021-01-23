@@ -11,7 +11,7 @@ PREFIX=$TOPDIR/lib
 
 LIBUVDIR=${TOPDIR}/libuv 
 CJSONDIR=${TOPDIR}/cJSON 
-LOG4CDIR=${TOPDIR}/log4c 
+ZLOGDIR=${TOPDIR}/zlog 
 
 BUILT_MARKER_FILE="$TOPDIR/.thirdparty_libs_built"
 
@@ -62,13 +62,9 @@ build_cjson() {
     cd ${TOPDIR}
 }
 
-build_log4c() {
-    cd ${LOG4CDIR}
-    rm -rf build
-    mkdir build
-    cd build
-    ../configure --prefix=$PREFIX
-    make -j && make install
+build_zlog() {
+    cd ${ZLOGDIR}
+    make PREFIX=$PREFIX && make PREFIX=$PREFIX install
     cd ${TOPDIR}
 }
 
@@ -82,7 +78,7 @@ if [ $1 = "build" ];then
   fi
   build_libuv
   build_cjson
-  build_log4c
+  build_zlog
 
   set_marker
 fi
@@ -92,5 +88,5 @@ if [ $1 = "clean" ];then
   rm -rf $BUILT_MARKER_FILE
   rm -rf ${CJSONDIR}/build
   rm -rf ${LIBUVDIR}/build
-  rm -rf ${LOG4CDIR}/build
+  make -C ${ZLOGDIR} clean
 fi

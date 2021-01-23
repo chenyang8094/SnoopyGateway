@@ -73,11 +73,13 @@ int destory_device(long sid) {
 
 int device_global_init() {
     if (pthread_mutex_init(&container_lock, NULL) != 0){
-        return 1;
+        return -1;
     }
+    return 0;
 }
 
 int device_global_exit() {
     pthread_mutex_destroy(&container_lock);
     memset(device_container, 0, DEVICE_ID_MAX);
+    return 0;
 }

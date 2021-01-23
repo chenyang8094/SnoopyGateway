@@ -31,7 +31,7 @@ LIBVAR	+= -lwiringPi \
 		   -lm \
 		   -lcrypt \
 		   ${DEPS_LIB_DIR}/libuv_a.a \
-		   ${DEPS_LIB_DIR}/liblog4c.a \
+		   ${DEPS_LIB_DIR}/libzlog.a \
 		   ${DEPS_LIB_DIR}/libcjson.a \
 		   -ldl
 
