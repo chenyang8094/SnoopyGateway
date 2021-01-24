@@ -13,6 +13,8 @@ static void cc2530_recv_callback(cc2530_buf_t buf) {
         zlog_error(g_log, "data parse error.");
         return;
     }
+
+    
     
 }
 

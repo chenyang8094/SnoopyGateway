@@ -26,7 +26,7 @@ int cc2530_init(const char *uart_dev, int baud)
     if ((fd = serialOpen(uart_dev, baud)) < 0)
     {
         zlog_error("unable to open serial device: %s", strerror(errno));
-        return 1;
+        return -1;
     }
 
     stopped = 0;
@@ -42,7 +42,7 @@ static void *receive_thread(void *arg)
     buf.len = 0;
     while (!stopped)
     {
-        while (serialDataAvail(fd))
+        while (serialDataAvail(fd) > 0)
         {
             int ch = serialGetchar(fd);
 
@@ -83,9 +83,11 @@ static void *receive_thread(void *arg)
             if (on_receive)
             {
                 on_receive(buf);
-                buf.len = 0;
             }
+            buf.len = 0;
         }
+
+        usleep(500);
     }
 
     free(buf.base);
