@@ -1,4 +1,4 @@
-#include "light.h"
+#include "simple_light.h"
 
 #include <stdlib.h>
 #include <string.h>
@@ -26,7 +26,6 @@ int light_set(device_t *device_p, cJSON *data)
 
 int light_get(device_t *device_p, cJSON *data)
 {
-   
 }
 
 int light_register_info(device_t *device_p, cJSON *info)

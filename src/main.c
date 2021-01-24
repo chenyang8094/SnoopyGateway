@@ -4,7 +4,7 @@
 #include <pthread.h>
 #include <wiringPi.h>
 #include "uv.h"
-#include "device.h"
+#include "device_mgr.h"
 #include "restapi.h"
 #include "log.h"
 #include "cmd_service.h"
