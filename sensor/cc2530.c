@@ -31,6 +31,19 @@ int cc2530_init(const char *uart_dev, int baud)
 
     stopped = 0;
     pthread_create(&t, NULL, receive_thread, NULL);
+
+    cc2530_send_string("AT+DEV=E");
+
+    sleep(1);
+
+    cc2530_send_string("AT+RESET");
+
+    sleep(3);
+
+    cc2530_send_string("AT+DEV=?");
+
+
+    return 0;
 }
 
 static void *receive_thread(void *arg)
@@ -45,7 +58,11 @@ static void *receive_thread(void *arg)
         while (serialDataAvail(fd) > 0)
         {
             int ch = serialGetchar(fd);
-
+            if (ch < 0) {
+                buf.len = 0;
+                recv_status = RECV_STATUS_NONE;
+                break;
+            }
             if (recv_status == RECV_STATUS_NONE)
             {
                 if (ch == FIN_1)
@@ -82,23 +99,27 @@ static void *receive_thread(void *arg)
         {
             if (on_receive)
             {
-                on_receive(buf);
+                zlog_info(g_log, "%.*s\n", buf.len, buf.base);
+                // on_receive(buf);
+                cc2530_send_string("AT+DEV=?");
             }
             buf.len = 0;
+            recv_status = RECV_STATUS_NONE;
         }
-
         usleep(500);
     }
 
     free(buf.base);
 }
 
-int cc2530_send(cc2530_buf_t buf)
+int cc2530_send_buf(cc2530_buf_t buf)
 {
-    for (int i = 0; i < buf.len; i++)
-    {
-        serialPutchar(fd, buf.base[i]);
-    }
+    buf.base[buf.len] = 0;
+    return serialPuts (fd, buf.base);
+}
+
+int cc2530_send_string(const char * str) {
+    return serialPuts (fd, str);
 }
 
 int cc2530_on_receive(recv_callback_t func)

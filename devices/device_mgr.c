@@ -102,8 +102,8 @@ int device_global_init()
 
     create_device(SIMPLE_LIGHT, "test", "0x0017880106117ff9");
 
-    if (cc2530_init("/dev/ttyAMA0", 115200) < 0) {
-        zlog_error(g_log, "cc2530 init failed.");
+    if (cc2530_init("/dev/ttyUSB0", 115200) != 0) {
+        zlog_error(g_log, "cc2530 init error.");
         return -1;
     }
 
