@@ -15,7 +15,9 @@ build_deps() {
 }
 
 build_src() {
-    make -j 
+    rm -rf build 
+    mkdir build && cd  build
+    cmake ../ && make -j
 }
 
 if [ $1 = "build" ];then

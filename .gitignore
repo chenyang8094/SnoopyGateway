@@ -10,3 +10,4 @@ nohup.out
 deps/lib
 deps/.thirdparty_libs_built
 .vscode/settings.json
+build/*

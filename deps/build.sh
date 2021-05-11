@@ -77,7 +77,6 @@ if [ $1 = "build" ];then
     echo "need to rebuild third party libs"
   fi
   build_libuv
-  build_cjson
   build_zlog
 
   set_marker
